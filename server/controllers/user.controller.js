@@ -75,7 +75,7 @@ module.exports.user_login = async (req, res) => {
       //check if the password entered matches the one in the database
       bcrypt.compare(password, user.rows[0].password, (err, validPassword) => {
         if (err) {
-          res.status(500).json({
+          res.status(401).json({
             error: "Sorry! Email or password is incorrect",
           });
         } else if (validPassword) {
@@ -87,7 +87,7 @@ module.exports.user_login = async (req, res) => {
             token,
           });
         } else {
-          res.status(500).json({
+          res.status(401).json({
             error: "Sorry! Email or password is incorrect",
           });
         }
